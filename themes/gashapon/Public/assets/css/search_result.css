@@ -1,0 +1,376 @@
+html,
+body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #342d36;
+}
+
+.fixed {
+	display: none;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	background-color: rgba(249, 240, 226, 1);
+	z-index: 5555;
+	border-top: 0 .05rem solid rgba(255, 187, 81, 1);
+}
+
+.fixed_ul {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.fixed_ul li {
+	width: 2.5rem;
+	height: 0.64rem;
+	font-size: 0.28rem;
+	color: rgba(53, 27, 0, 1);
+	line-height: 0.64rem;
+	text-align: center;
+	border-bottom: 1px solid rgba(192, 174, 156, 1);
+}
+
+.exit {
+	width: 100%;
+	height: 0.64rem;
+	font-size: 0.28rem;
+	color: rgba(53, 27, 0, 1);
+	line-height: 0.64rem;
+	text-align: center;
+}
+
+.head {
+	position: fixed;
+	width: 100%;
+	height: 1.1rem;
+	background-color: rgba(251, 213, 86, 1);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	z-index: 998 !important;
+	box-sizing:border-box;
+	border-bottom: 0.03rem solid rgba(53,27,0,1);
+}
+
+.head_item {
+	width: 0.625rem;
+	height: 0.625rem;
+}
+
+.seach {
+	width: 4.94rem;
+	height: 0.79rem;
+	box-sizing: border-box;
+	border: 0.04rem solid rgba(52, 29, 8, 1);
+}
+
+.body {
+	margin-top: 1rem;
+	width: 100%;
+	height: auto;
+	background-image: url(../images/pic0.png);
+	background-size: 100% 100%;
+}
+
+.body {
+	width: 100%;
+	height: auto;
+}
+
+.wrap {
+	width: 7.02rem;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.typeone {
+	margin-top: 0.24rem;
+	width: 100%;
+	height: 2.02rem;
+	overflow: hidden;
+}
+
+.typetwo {
+	width: 7.02rem;
+	height: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-image: url(../images/pic0.png);
+	z-index: 9999 !important;
+}
+
+.fl {
+	width: 3.4rem;
+	height: 0.56rem;
+	box-sizing: border-box;
+	border: 0.04rem solid rgba(52, 29, 8, 1);
+	background-color: rgba(181, 131, 68, 1);
+}
+
+.fl_main {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.fl_logo {
+	width: .5rem;
+	height: .35rem;
+	margin-left: 0.17rem;
+}
+
+.fl_res {
+	width: 2.7rem;
+	height: 100%;
+	line-height: 0.56rem;
+	font-size: 0.36rem;
+	text-align: center;
+}
+
+.fl_xz {
+	position: absolute;
+	display: none;
+	width: 3.4rem;
+	background-color: rgba(255, 255, 255, 1) !important;
+	/*margin-top: 4.2rem;*/
+	/*margin-top: 0.76rem;*/
+	margin-left: -0.04rem;
+	opacity: 1 !important;
+}
+
+.fl_head {
+	width: 2.9rem;
+	height: 0.66rem;
+	text-align: center;
+	line-height: 0.66rem;
+	font-size: 0.28rem;
+	color: rgba(0, 0, 0, 1);
+	margin: 0 auto;
+}
+
+.fl_ul {
+	width: 2.9rem;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden
+}
+
+.fl_ul li {
+	width: 100%;
+	height: 0.64rem;
+	border-top: 0.02rem solid rgba(230, 230, 230, 1);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 0.28rem;
+	color: rgba(0, 0, 0, 1);
+	line-height: 0.66rem;
+}
+
+.price {
+	width: 3.4rem;
+	height: 0.56rem;
+	box-sizing: border-box;
+	border: 0.04rem solid rgba(52, 29, 8, 1);
+	background-color: rgba(181, 131, 68, 1);
+}
+
+.jg_head {
+	width: 2.9rem;
+	height: 0.66rem;
+	text-align: left;
+	line-height: 0.66rem;
+	font-size: 0.28rem;
+	color: rgba(0, 0, 0, 1);
+	margin: 0 auto;
+}
+
+.jg_ul {
+	width: 2.9rem;
+	height: auto;
+	margin: 0 auto;
+	overflow: hidden
+}
+
+.jg_ul li {
+	width: 100%;
+	height: 0.64rem;
+	border-top: 0.02rem solid rgba(230, 230, 230, 1);
+	font-size: 0.28rem;
+	color: rgba(0, 0, 0, 1);
+	line-height: 0.66rem;
+	text-align: left;
+}
+
+.jg_xz {
+	position: absolute;
+	display: none;
+	width: 3.4rem;
+	background-color: rgba(255, 255, 255, 1) !important;
+	/*margin-top: 4.2rem;*/
+	/*margin-top: 0.76rem;*/
+	margin-left: -0.04rem;
+	opacity: 1 !important;
+}
+
+.typethree {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	margin-bottom: 0.2rem;
+}
+
+.typethree ul {
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+
+.typethree ul li {
+	width: 3.4rem;
+	height: 4.24rem;
+	box-sizing: border-box;
+	border: 0.03rem solid rgba(52, 29, 8, 1);
+	margin-top: 0.24rem;
+}
+
+.Collection {
+	margin-top: 2.88rem;
+	margin-left: 0.14rem;
+	width: 1.28rem;
+	height: 0.56rem;
+	border-radius: 0.28rem;
+	display: flex;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.Collection_img {
+	width: 0.56rem;
+	height: 0.56rem;
+	background-image: url(../images/sc_f@2x.png);
+	background-size: 100% 100%;
+}
+
+.Collection_img_active {
+	background-image: url(../images/sc_t@2x.png);
+	background-size: 100% 100%;
+}
+
+.number {
+	width: 0.7rem;
+	height: 0.56rem;
+	font-size: 0.32rem;
+	font-family: PingFangSC;
+	color: rgba(0, 0, 0, 1);
+	font-weight: bold;
+	text-align: center;
+	line-height: 0.56rem;
+}
+
+.typethree_bottom {
+	margin-top: 0.12rem;
+	width: 100%;
+	height: 0.64rem;
+	background-color: rgba(255, 255, 255, 0.7);
+	border-top: 0.01rem solid black;
+}
+
+.typethree_bottom p {
+	display: block;
+	width: 2.86rem;
+	height: 100%;
+	line-height: 0.64rem;
+	font-size: 0.32rem;
+	color: rgba(0, 0, 0, 1);
+	font-family: PingFangSC;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin: 0 auto;
+}
+
+.typeone .swiper-container {
+	width: 100%;
+	height: 100%;
+}
+
+body>div.body>div.wrap>div>div>div.swiper-pagination.swiper-pagination-bullets {
+	bottom: 0px !important;
+}
+
+.typeone .swiper-container .swiper-pagination .swiper-pagination-bullet {
+	width: 0.16rem;
+	height: 0.16rem;
+	border-radius: 0px;
+	background-color: rgba(254, 175, 89, 1);
+	opacity: 1;
+}
+
+.typeone .swiper-container .swiper-wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.typeone .swiper-container .swiper-wrapper .swiper-slide {
+	width: 100%;
+	height: 100%;
+}
+
+.typeone .swiper-pagination-bullet-active {
+	background: white !important;
+	opacity: 1;
+}
+
+.foot {
+	position: fixed;
+	bottom: 0px;
+	display: flex;
+	width: 100%;
+	height: 1.2rem;
+	background-color: rgba(85, 61, 32, 1);
+	justify-content: space-around;
+	align-items: center;
+}
+
+.foot_item {
+	width: 1.07rem;
+	height: 0.86rem;
+}
+
+.show {
+	display: block;
+}
+
+.typetwo_seach {
+	width: 7.02rem;
+	box-sizing: border-box;
+	height: 0.56rem;
+	border: 0.03rem solid rgba(57, 25, 0, 1);
+	background-color: white;
+	display: flex;
+	align-items: center;
+}
+
+.typetwo_seach_logo {
+	width: 0.35rem;
+	height: 0.3rem;
+	margin-left: 0.21rem;
+}
+
+.typetwo_seach p {
+	font-size: 0.32rem;
+	font-family: PingFangSC-Regular;
+	color: rgba(0, 0, 0, 1);
+	margin-left: 0.2rem;
+}

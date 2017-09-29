@@ -1,0 +1,45 @@
+.header{
+	height:1.11rem;
+	background:rgba(252,213,85,1);
+	border-bottom: 4px solid rgba(53,27,0,1);
+}
+.body{
+	background-image: url(../images/index_bg6@2x.png);
+	height:8.98rem;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.body_img{
+	width: 5.29rem;
+	height: 7.49rem;
+	display:flex;
+	justify-content: center;
+	flex-wrap:wrap ;
+	font-size: 0.26rem;
+	color:#fff;
+	text-align: center;
+	
+	background-image: -webkit-repeating-radial-gradient(center,rgba(54,28,0,1) 0%, rgba(134,90,33,1), rgba(54,28,0,1) 45%);  
+    background-image: -moz-repeating-radial-gradient(center,rgba(54,28,0,1) 0%, rgba(134,90,33,1), rgba(54,28,0,1) 45%); 
+    background-image: -o-repeating-radial-gradient(center,rgba(54,28,0,1) 0%, rgba(134,90,33,1), rgba(54,28,0,1) 45%); 
+    background-image: -ms-repeating-radial-gradient(center,rgba(54,28,0,1) 0%, rgba(134,90,33,1), rgba(54,28,0,1) 45%);  
+    background-image: repeating-radial-gradient(center,rgba(54,28,0,1) 0%, rgba(134,90,33,1), rgba(54,28,0,1) 45%);  
+}
+.body_img img{
+	width: 5rem;
+	height: 6.51rem;
+	margin-top:0.14rem;
+}
+.footer{
+	border-top: 0.13rem solid rgba(53,27,0,1);
+	height:1.8rem;
+	background:rgba(104,73,44,1);
+	display:flex;
+	justify-content: center;
+	align-items:center ;
+}
+.footer img{
+	width: 2.79rem;
+	height: 0.85rem;
+}

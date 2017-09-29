@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>签到</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/init.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/sign.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/swiper-3.4.2.min.css" />
+    <script src="__TMPL__Public/assets/js/fontsize.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body style="overflow-x: hidden;">
+
+
+<div class="header">
+
+    <a href="{:U('Index/index')}"><img src="__TMPL__Public/assets/images/icon_016.png" alt="" /></a>
+    <div><b>每日签到</b></div>
+
+</div>
+
+<div class="body" style="background-image: url('__TMPL__Public/assets/images/pic0.png');">
+    <div class="checkin">
+
+    </div>
+    <div class="mask">
+        <div class="modal">
+            <a href="#" class="closeBtn">×</a>
+            <h1 class="title_h1 clearfix"><span></span><em>已签到</em> <i>您已签到{$num}天</i></h1>
+            <h2 class="title_h2">您获得现金<span>{$reward}元</span></h2>
+        </div>
+    </div>
+
+    <div class="body_2">
+        <div class="body_2_day">
+            累计3天登录奖励
+        </div>
+        <div class="body_2_award">
+            <div>
+                <!--<img src="__TMPL__Public/assets/images/icon24.png" alt="" />-->
+                <img src="__TMPL__Public/assets/images/icon25.png" style="width:1.8rem;height:1.8rem;margin-top:-0.4rem;margin-left:-0.3rem;" alt="" />
+                <span>1-10天</span>
+            </div>
+            <div>
+                <!--<img src="__TMPL__Public/assets/images/icon24.png" alt="" />-->
+                <img src="__TMPL__Public/assets/images/icon25.png" style="width:1.8rem;height:1.8rem;margin-top:-0.4rem;margin-left:-0.3rem;" alt="" />
+                <span>11-20天</span>
+            </div>
+            <div>
+                <!--<img src="__TMPL__Public/assets/images/icon24.png" alt="" />-->
+                <img src="__TMPL__Public/assets/images/icon25.png" style="width:1.8rem;height:1.8rem;margin-top:-0.4rem;margin-left:-0.3rem;" alt="" />
+                <span>21-31天</span>
+            </div>
+            <!--<div>
+                <img src="__TMPL__Public/assets/images/icon24.png" alt="" />
+                <img src="__TMPL__Public/assets/images/icon25.png" style="width:1.8rem;height:1.8rem;margin-top:-0.4rem;margin-left:-0.3rem;" alt="" />
+                <span>21天</span>
+            </div>
+            <div>
+                <img src="__TMPL__Public/assets/images/icon24.png" alt="" />
+                <img src="__TMPL__Public/assets/images/icon25.png" style="width:1.8rem;height:1.8rem;margin-top:-0.4rem;margin-left:-0.3rem;" alt="" />
+                <span>28天</span>
+            </div>-->
+        </div>
+
+        <div class="box_award">
+            <div class="box_award_img">
+                <img src="__TMPL__Public/assets/images/icon27.png" alt="" />
+            </div>
+            <span>送50蛋币</span>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div>
+        <img src="__TMPL__Public/assets/images/icon28.png" alt="" />
+    </div>
+</div>
+
+</body>
+<script src="__TMPL__Public/assets/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/assets/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/assets/js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/assets/js/lunbo.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    (function($) {
+        var time ={$time};
+        console.log(time);
+        var Checkin = function(ele, options) {
+            this.ele = ele;
+            this.opt = options;
+            this.defaults = {
+                width: 6.5, //宽度
+                height: 'auto', //高度
+                background: '', //背景颜色
+                radius: 10, //圆角
+                color: '#fff', //颜色
+                padding: 10, //
+                dateArray: [1, 2, 3], // 假设已签到的天数+1
+                notdatearray: [0]
+            };
+            this.obj = $.extend({}, this.defaults, this.opt);
+        }
+        Checkin.prototype.init = function() {
+            var _self = this.ele,
+                html = '',
+                myDate = new Date(),
+                year = myDate.getFullYear(),
+                month = myDate.getMonth(),
+                day = myDate.getDate(),
+                weekText = ['日', '一', '二', '三', '四', '五', '六'];
+            _self.css({
+                width: this.obj.width + 'rem',
+                height: this.obj.height,
+                background: this.obj.background,
+                borderRadius: this.obj.radius,
+                color: this.obj.color,
+                padding: this.obj.padding
+            })
+                .append("<div class='title'><a class=\'checkBtn\' href=\"javascript:;\">签到</a></div>");
+            $("<ul class='week clearfix'></ul><ul class='calendarList clearfix'></ul>").appendTo(_self);
+            for(var i = 0; i < 7; i++) {
+                _self.find(".week").append("<li>" + weekText[i] + "</li>")
+            };
+            for(var i = 0; i < 35; i++) {
+                html += "<li></li>"
+            };
+            _self.find(".calendarList").append(html);
+            var $li = _self.find(".calendarList").find("li");
+            _self.find(".week li").css({
+                width: 0.9 + 'rem',
+                height: 0.5 + 'rem',
+                //						borderRight: '1px solid #f90',
+                boxSizing: 'border-box',
+                textAlign: "center",
+                fontSize: 0.25 + 'rem',
+                fontWeight: 600,
+                color: "rgba(85,61,32,1)"
+                //						background: '#b25d06'
+            });
+            $li.css({
+                width: 0.9 + 'rem',
+                height: 0.9 + 'rem',
+                //						borderRight: '1px solid #f90',
+                //						borderBottom: '1px solid #f90',
+                boxSizing: 'border-box',
+
+                //						color: "#b25d06"
+            });
+            var ajax_url="{:U('index/qiandao')}";
+            _self.find(".calendarList").find("li:nth-child(7n)").css('borderRight', 'none');
+            _self.find(".week li:nth-child(7n)").css('borderRight', 'none');
+            var that=this.obj
+            $.ajax({
+                type: "GET",
+                url: ajax_url,
+                dataType: "json",
+                data: {id:1
+
+                },
+                success: function(data) {
+                    alert('aaaaa');
+                    /*console.log("成功")*/
+                },
+                error: function() {
+                    alert('BBBBBB');
+                    console.log("失败")
+                    console.log(this)
+                    var monthFirst = new Date(year, month, 1).getDay();
+                    console.log(monthFirst);
+                    var d = new Date(year, (month + 1), 0)
+                    var totalDay = d.getDate(); //获取当前月的天数
+                    console.log(totalDay)
+                    for(var i = 0; i < totalDay; i++) {
+                        $li.eq(i + monthFirst).html(i + 1);
+                        $li.eq(i + monthFirst).css({
+                            "background-image": "url(__TMPL__Public/assets/images/icon999.png)",
+                            "background-size": "100% 100%",
+                            "border": "2px solid rgba(254,211,101,1)"
+                        })
+                        $li.eq(i + monthFirst).addClass('data' + (i + 1))
+                        if(isArray(that.dateArray)) {
+                            for(var j = 0; j < that.dateArray.length; j++) {
+                                if(i == that.dateArray[j]) {
+                                    // 假设已经签到的
+                                    var img = $("<img src='__TMPL__Public/assets/images/icon777.png' style='display:block;width:100%;height:100%;position:absolute;top:0;left:0;' />")
+                                    $li.eq(i + monthFirst).append(img);
+                                }
+                            }
+                        }
+                    }
+                    //$li.eq(monthFirst+day-1).css('background','#f7ca8e')
+                    _self.find($(".data" + day)).addClass('able-qiandao');
+
+                }
+            });
+
+        }
+        var isChecked = false;
+        Checkin.prototype.events = function() {
+            var _self = this.ele;
+            var $li = _self.find(".calendarList").find("li");
+            $li.on('click', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                if($(this).hasClass('able-qiandao')) {
+                    $(this).addClass('checked');
+                    modal(_self);
+                    isChecked = true;
+                }
+            });
+            var checkBtn = _self.find(".checkBtn");
+            checkBtn.click(function(event) {
+                modal(_self);
+                _self.find('.able-qiandao').addClass('checked');
+                isChecked = true;
+            });
+        }
+        var modal = function(e) {
+            var mask = e.parents().find(".mask");
+            var close = e.parents().find(".closeBtn");
+            if(mask && !isChecked) {
+                mask.addClass('trf');
+            } else {
+                return
+            };
+            close.click(function(event) {
+                event.preventDefault();
+                mask.removeClass('trf')
+            });
+            e.parents().find('.checkBtn').text("已签到");
+        }
+        $.fn.Checkin = function(options) {
+            var checkin = new Checkin(this, options);
+            var obj = [checkin.init(), checkin.events()]
+            return obj
+        }
+        var isArray = function(arg) {
+            return Object.prototype.toString.call(arg) === '[object Array]';
+        };
+    })(jQuery);
+    // 插件调用
+    $(".checkin").Checkin();
+    // 元素居中显示，与插件无关，根本自己需要修改；
+    //			$(".checkin").css('marginTop', parseInt(($(window).innerHeight() - $(".checkin").outerHeight()) / 2) + 'px');
+</script>
+
+</html>

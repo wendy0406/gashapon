@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>关于蛋蛋王国</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/init.css"/>
+		<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/notification.css"/>
+	</head>
+	<body>
+	<php>
+	$posts=sp_sql_posts('cid:2;field:post_title,object_id;order:listorder asc;');
+	</php>
+	<div class="head">
+		<div class="return">
+			<a href="javascript:window.history.go(-1)"><img src="__TMPL__Public/assets/images/icon01.png"/></a>
+		</div>
+		<p class="head_title">
+			系统通知
+		</p>
+	</div>
+	<div class="line"></div>
+	<div class="body">
+		<foreach name="posts" item="vo">
+		<div class="res">
+			<ul>
+				<li>
+					<div class="li_item">
+						<a href="{:u('message/messagecontent',array('id'=>$vo['object_id']))}" style="color: #000000
+						">{$vo.post_title }</a>
+					</div>
+					<div class="jt">
+						<img src="__TMPL__Public/assets/images/icon02.png"/>
+					</div>
+				</li>
+			</ul>
+		</div>
+		</foreach>
+	</div>
+	</div>
+	</body>
+	<script src="__TMPL__Public/assets/js/fontsize.js" type="text/javascript" charset="utf-8"></script>
+	<script src="__TMPL__Public/assets/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+</html>

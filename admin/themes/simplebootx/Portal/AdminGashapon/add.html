@@ -1,0 +1,400 @@
+<admintpl file="header" />
+<style type="text/css">
+	.pic-list li {
+		margin-bottom: 5px;
+	}
+</style>
+<script type="text/html" id="photos-item-wrapper">
+	<li id="savedimage{id}">
+		<input id="photo-{id}" type="hidden" name="photos_url[]" value="{filepath}">
+		<input id="photo-{id}-stock" type="text" name="stock[]" value="" style="width: 80px;" placeholder="扭蛋库存量">
+		<input id="photo-{id}-name" type="text" name="photos_alt[]" value="" style="width: 160px;" placeholder="请输入扭蛋名称">
+		<img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;" onclick="parent.image_preview_dialog(this.src);">
+		<a href="javascript:upload_one_image('图片上传','#photo-{id}');">替换</a>
+		<a href="javascript:(function(){$('#savedimage{id}').remove();})();">移除</a>
+	</li>
+</script>
+</head>
+<body>
+<div class="wrap js-check-wrap">
+	<ul class="nav nav-tabs">
+		<li><a href="{:U('AdminGashapon/index')}">扭蛋机管理</a></li>
+		<li class="active"><a href="{:U('AdminGashapon/add',array('term'=>empty($term['term_id'])?'':$term['term_id']))}" target="_self">添加扭蛋机</a></li>
+	</ul>
+	<form action="{:U('AdminGashapon/add_post')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+		<div class="row-fluid">
+			<div class="span9">
+				<table class="table table-bordered">
+					<tr>
+						<th width="80">分类</th>
+						<td>
+							<select style="max-height: 100px;" name="cate">{$cate_list}</select>
+						</td>
+					</tr>
+					<tr>
+						<th width="80">专题</th>
+						<td>
+							<select multiple="multiple" style="max-height: 100px;" name="topic[]">{$topic_list}</select>
+							<div>windows：按住 Ctrl 按钮来选择多个选项,Mac：按住 command 按钮来选择多个选项</div>
+						</td>
+					</tr>
+					<tr>
+						<th>扭蛋机名称</th>
+						<td>
+							<input type="text" style="width:400px;" name="gname" id="title" required value="" placeholder="请输入标题"/>
+							<span class="form-required">*</span>
+						</td>
+					</tr>
+					<tr>
+						<th><b>缩略图</b></th>
+						<td>
+							<input type="hidden" name="smeta[thumb]" id="thumb" value="">
+							<a href="javascript:upload_one_image('图片上传','#thumb');">
+								<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb-preview" width="135" style="cursor: hand" />
+							</a>
+							<input type="button" class="btn btn-small" onclick="$('#thumb-preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+						</td>
+					</tr>
+					<tr>
+						<th>成本价</th>
+						<td><input type="text" name="price_cost" id="keywords" value="" required  style="width: 100px" placeholder="请输入价格">
+							<span class="form-required">*</span>
+						</td>
+					</tr>
+					<tr>
+						<th>售卖价</th>
+						<td>
+							<input type="text" name="price_celing" id="source" required  value="" style="width: 100px" placeholder="请输入价格">
+							<span class="form-required">*</span>
+						</td>
+					</tr>
+					<tr>
+						<th>相册图集</th>
+						<td>
+							<ul id="photos" class="pic-list unstyled"></ul>
+							<a href="javascript:upload_multi_image('图片上传','#photos','photos-item-wrapper');" class="btn btn-small">选择图片</a>
+						</td>
+					</tr>
+					<tr>
+						<th>新品</th>
+						<td>
+							<input type="radio" name="ifnew" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="ifnew" value="0" checked>否
+						</td>
+					</tr>
+					<tr>
+						<th>盒蛋</th>
+						<td>
+							<input type="radio" name="ifhd" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="ifhd" value="0" checked>否
+						</td>
+					</tr>
+					<tr>
+						<th>特价</th>
+						<td id="tejia1">
+							<input type="radio" name="iftejia" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="iftejia" value="0" checked>否
+						</td>
+					</tr>
+					<tr id="tejia2" style="display: none">
+						<th>特价价格</th>
+						<td>
+							<ul id="photos" class="pic-list unstyled"></ul>&nbsp;&nbsp;
+							<input type="text" name="tejia" style="width: 100px" placeholder="特价价格">
+						</td>
+					</tr>
+					<tr>
+						<th>限时抢购</th>
+						<td id="xsqg1">
+							<input type="radio" name="ifxsqg" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="ifxsqg" value="0" checked>否
+						</td>
+					</tr>
+					<tr class="xsqg2" style="display: none">
+						<th>抢购时间</th>
+						<td>
+							<ul id="photos" class="pic-list unstyled"></ul>&nbsp;&nbsp;
+							<input type="text" name="start_time" class="js-datetime" value="{$formget.start_time|default=''}" style="width: 120px;" autocomplete="off">-
+							<input type="text" class="js-datetime" name="end_time" value="{$formget.end_time|default=''}" style="width: 120px;" autocomplete="off"> &nbsp; &nbsp;
+						</td>
+					</tr>
+					<tr class="xsqg2" style="display: none">
+						<th>抢购价格</th>
+						<td>
+							<ul id="photos" class="pic-list unstyled"></ul>&nbsp;&nbsp;
+							<input type="text" name="price_ps" style="width: 100px" placeholder="抢购价格">
+						</td>
+					</tr>
+					<tr>
+						<th>砍价</th>
+						<td id="kj1">
+							<input type="radio" name="ifkj" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="ifkj" value="0" checked>否
+						</td>
+					</tr>
+					<tr class="kj2" style="display: none">
+						<th>砍价价格</th>
+						<td>
+							<ul id="photos" class="pic-list unstyled"></ul>&nbsp;&nbsp;
+							<input type="text" name="kjmoney" style="width: 100px" placeholder="砍价价格">
+						</td>
+					</tr>
+					<tr class="kj2" style="display: none">
+						<th>可砍次数</th>
+						<td>
+							<ul id="photos" class="pic-list unstyled"></ul>&nbsp;&nbsp;
+							<input type="text" name="kjnum" style="width: 100px" placeholder="可砍次数">
+						</td>
+					</tr>
+					<tr>
+						<th>推荐</th>
+						<td>
+							<input type="radio" name="Iftuijian" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="Iftuijian" value="0" checked>否
+						</td>
+					</tr>
+					<tr>
+						<th>预售</th>
+						<td id="ys1">
+							<input type="radio" name="ifys" value="1">是&nbsp;&nbsp;
+							<input type="radio" name="ifys" value="0" checked>否
+						</td>
+					</tr>
+					<tr class="ys2" style="display: none">
+						<th>预售价格</th>
+						<td>
+							<input type="text" name="price_fs" style="width: 100px" placeholder="预售价格">
+						</td>
+					</tr>
+					<tr class="ys2" style="display: none">
+						<th>时间段</th>
+						<td>
+							<input type="text" name="ys_start_time" class="js-datetime" value="{$formget.start_time|default=''}" style="width: 120px;" autocomplete="off">-
+							<input type="text" name="ys_middle_time" class="js-datetime" value="{$formget.start_time|default=''}" style="width: 120px;" autocomplete="off">-
+							<input type="text" class="js-datetime" name="ys_end_time" value="{$formget.end_time|default=''}" style="width: 120px;" autocomplete="off"> &nbsp; &nbsp;
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+		<div class="form-actions">
+			<!--<button class="btn btn-primary " type="submit">提交</button>-->
+			<input type="submit" class="btn btn-primary " value="提交">
+			<a class="btn" href="{:U('AdminGashapon/index')}">返回</a>
+		</div>
+	</form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $(".js-ajax-close-btn").on('click', function(e) {
+            e.preventDefault();
+            Wind.use("artDialog", function() {
+                art.dialog({
+                    id : "question",
+                    icon : "question",
+                    fixed : true,
+                    lock : true,
+                    background : "#CCCCCC",
+                    opacity : 0,
+                    content : "您确定需要关闭当前页面嘛？",
+                    ok : function() {
+                        setCookie("refersh_time", 1);
+                        window.close();
+                        return true;
+                    }
+                });
+            });
+        });
+        /////---------------------
+        Wind.use('validate', 'ajaxForm', 'artDialog', function() {
+            //javascript
+
+            //编辑器
+            editorcontent = new baidu.editor.ui.Editor();
+            editorcontent.render('content');
+            try {
+                editorcontent.sync();
+            } catch (err) {
+            }
+            //增加编辑器验证规则
+            jQuery.validator.addMethod('editorcontent', function() {
+                try {
+                    editorcontent.sync();
+                } catch (err) {
+                }
+                return editorcontent.hasContents();
+            });
+            var form = $('form.js-ajax-forms');
+            //ie处理placeholder提交问题
+            if ($.browser && $.browser.msie) {
+                form.find('[placeholder]').each(function() {
+                    var input = $(this);
+                    if (input.val() == input.attr('placeholder')) {
+                        input.val('');
+                    }
+                });
+            }
+
+            var formloading = false;
+            //表单验证开始
+            form.validate({
+                //是否在获取焦点时验证
+                onfocusout : false,
+                //是否在敲击键盘时验证
+                onkeyup : false,
+                //当鼠标掉级时验证
+                onclick : false,
+                //验证错误
+                showErrors : function(errorMap, errorArr) {
+                    //errorMap {'name':'错误信息'}
+                    //errorArr [{'message':'错误信息',element:({})}]
+                    try {
+                        $(errorArr[0].element).focus();
+                        art.dialog({
+                            id : 'error',
+                            icon : 'error',
+                            lock : true,
+                            fixed : true,
+                            background : "#CCCCCC",
+                            opacity : 0,
+                            content : errorArr[0].message,
+                            cancelVal : '确定',
+                            cancel : function() {
+                                $(errorArr[0].element).focus();
+                            }
+                        });
+                    } catch (err) {
+                    }
+                },
+                //验证规则
+                rules : {
+                    'post[post_title]' : {
+                        required : 1
+                    },
+					'price_celling' : {
+                        required : 1
+                    },
+					'price_cost' : {
+                        required : 1
+                    },
+
+                },
+                //验证未通过提示消息
+                messages : {
+                    'post[post_title]' : {
+                        required : '请输入标题'
+                    },
+                    'price_celling' : {
+                        required : '请输入售卖价'
+                    },
+					'price_cost' : {
+                        required : '请输入成本价'
+                    }
+                },
+                //给未通过验证的元素加效果,闪烁等
+                highlight : false,
+                //是否在获取焦点时验证
+                onfocusout : false,
+                //验证通过，提交表单
+//                submitHandler : function(forms) {
+//                    if (formloading)
+//                        return;
+//                    $(forms).ajaxSubmit({
+//                        url : form.attr('action'), //按钮上是否自定义提交地址(多按钮情况)
+//                        dataType : 'json',
+//                        beforeSubmit : function(arr, $form, options) {
+//                            formloading = true;
+//                        },
+//                        success : function(data, statusText, xhr, $form) {
+//                            formloading = false;
+//                            if (data.status) {
+//                                setCookie("refersh_time", 1);
+//                                //添加成功
+//                                Wind.use("artDialog", function() {
+//                                    art.dialog({
+//                                        id : "succeed",
+//                                        icon : "succeed",
+//                                        fixed : true,
+//                                        lock : true,
+//                                        background : "#CCCCCC",
+//                                        opacity : 0,
+//                                        content : data.info,
+//                                        button : [ {
+//                                            name : '继续添加？',
+//                                            callback : function() {
+//                                                reloadPage(window);
+//                                                return true;
+//                                            },
+//                                            focus : true
+//                                        }, {
+//                                            name : '返回列表页',
+//                                            callback : function() {
+//                                                location = "{:U('AdminGashapon/index')}";
+//                                                return true;
+//                                            }
+//                                        } ]
+//                                    });
+//                                });
+//                            } else {
+//                                artdialog_alert(data.info);
+//                            }
+//                        }
+//                    });
+//                }
+            });
+        });
+        ////-------------------------
+    });
+</script>
+<script type="text/javascript">
+    //特价
+    $("#tejia1 input").click(function(){
+
+        if($(this).val()=="1"){
+
+            $("#tejia2").slideDown();
+        }else{
+            $("#tejia2").slideUp();
+        }
+    })
+    //限时抢购
+    $("#xsqg1 input").click(function(){
+
+        if($(this).val()=="1"){
+
+            $(".xsqg2").slideDown();
+        }else{
+            $(".xsqg2").slideUp();
+        }
+    })
+    //砍价
+    $("#kj1 input").click(function(){
+
+        if($(this).val()=="1"){
+
+            $(".kj2").slideDown();
+        }else{
+            $(".kj2").slideUp();
+        }
+    })
+    //预售
+    $("#ys1 input").click(function(){
+
+        if($(this).val()=="1"){
+
+            $(".ys2").slideDown();
+        }else{
+            $(".ys2").slideUp();
+        }
+    })
+</script>
+</body>
+</html>

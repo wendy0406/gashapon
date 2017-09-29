@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>搜索页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/init.css" />
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/seach.css"/>
+    <script src="__TMPL__Public/assets/js/fontsize.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="head">
+    <!--头部-->
+    <div class="head_item return">
+        <!--专题-->
+        <a href="javascript:history.go(-1)"><img src="__TMPL__Public/assets/images/icon01.png" /></a>
+    </div>
+    <form action="{:u('gsearch/gsearchlist')}" method="post">
+    <div class="seach">
+        <!--搜索-->
+        <div class="seach_logo"><img src="__TMPL__Public/assets/images/icon003.png"/></div>
+        <input type="text" name="keywords" placeholder="搜索" />
+    </div>
+        <input type="submit" value="搜索" style="display: none" id="tj">
+    </form>
+    <div class="head_item ser" id="ssuo">
+        <!--消息-->
+
+        <img src="__TMPL__Public/assets/images/search_font@2x.png"/>
+    </div>
+
+</div>
+<div class="line"></div>
+<div class="body">
+    <div class="rm_title">
+        <!--热门搜素部分-->
+        <div class="rm_logo">
+            <img src="__TMPL__Public/assets/images/hot@2x.png"/>
+        </div>
+        <p>热门搜索</p>
+    </div>
+    <ul class="rm_ul">
+        <!--热门搜索列表-->
+        <volist name="hotsearch" id="hotsearchvo">
+        <li><a href="{:u('gsearch/gsearchlist',array('keywords'=>$hotsearchvo['hotword']))}">{$hotsearchvo.hotword}</a></li>
+        </volist>
+    </ul>
+    <div class="ls_title">
+        <!--历史搜索部分-->
+        <div class="ls_main">
+            <div class="ls_logo">
+                <img src="__TMPL__Public/assets/images/his@2x.png"/>
+            </div>
+            <p>历史搜索</p>
+        </div>
+        <div class="cha">
+            <!--清空符号-->
+            <img src="__TMPL__Public/assets/images/qc@2x.png"/>
+        </div>
+    </div>
+    <div class="ls_ul">
+        <!--搜索历史列表-->
+        <volist name="usersearch" id="usersearchvo">
+        <li><a href="{:u('gsearch/gsearchlist',array('keywords'=>$usersearchvo['historyword']))}">{$usersearchvo.historyword}</a></li>
+        </volist>
+    </div>
+</div>
+<div class="kong"></div>
+
+
+</body>
+<script src="__TMPL__Public/assets/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".cha").click(function(){
+        //只是前台假象而已，真实删除从后台删除
+        $(".ls_ul li").remove();
+    });
+    $("#ssuo").click(function () {
+        $("#tj").click();
+    })
+</script>
+
+</html>

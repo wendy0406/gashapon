@@ -1,0 +1,227 @@
+<head>
+	<meta charset="UTF-8">
+	<title>{$name} {$seo_title} {$site_name}</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/init.css" />
+	<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/Toylist.css" />
+	<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/swiper-3.4.2.min.css" />
+	<script src="__TMPL__Public/assets/js/fontsize.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div class="fixed">
+	<ul class="fixed_ul">
+		<volist name="topic" id="topicvo">
+			<li>
+				<a href="{:u('topic/index',array('id'=>$topicvo['topic_id']))}" style="color:#000;">{$topicvo.topicname}</a>
+			</li>
+		</volist>
+	</ul>
+	<div class="exit">
+		取消
+	</div>
+
+
+
+</div>
+<div class="head">
+	<!--头部-->
+	<div class="head_item zt">
+		<!--专题-->
+		<img src="__TMPL__Public/assets/images/icon000.png" />
+	</div>
+	<div class="seach">
+		<!--搜索--><img src="__TMPL__Public/assets/images/icon023.png" />
+	</div>
+	<div class="head_item xx">
+		<!--消息-->
+		<a href="{:u('message/index')}"><img src="__TMPL__Public/assets/images/icon002.png" /></a>
+	</div>
+</div>
+<div class="line"></div>
+<div class="body">
+	<!--身体部分-->
+	<div class="wrap">
+		<!--外壳-->
+		<div class="typeone">
+			<!--第一部分-->
+			<php> $list_slides=sp_getslide("imgs_shoplist"); </php>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<foreach name="list_slides" item="vo">
+						<div class="swiper-slide"><a href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}"/></a></div>
+					</foreach>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+
+				<!-- 如果需要导航按钮 -->
+				<!--<div class="swiper-button-prev"></div>-->
+				<!--<div class="swiper-button-next"></div>-->
+
+				<!-- 如果需要滚动条 -->
+				<!--<div class="swiper-scrollbar" style="display: none;"></div>-->
+			</div>
+		</div>
+		<div class="typetwo">
+			<!--第二部分-->
+			<div class="fl">
+				<!--分类-->
+				<div class="fl_main">
+					<div class="fl_logo"><img src="__TMPL__Public/assets/images/icon020.png"/></div>
+					<div class="fl_res">
+						全部分类
+					</div>
+				</div>
+				<div class="fl_xz">
+					<div class="fl_head">
+						全部分类
+					</div>
+					<ul class="fl_ul">
+						<volist name="cate" id="catevo">
+							<li>
+								<a href="{:u('cate/index',array('id'=>$catevo['cate_id']))}" style="color:#000;">{$catevo.catename}</a>
+							</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<div class="price">
+				<!--价格-->
+				<div class="fl_main">
+					<div class="fl_logo"><img src="__TMPL__Public/assets/images/icon020.png"/></div>
+					<div class="fl_res">
+						全部价格
+					</div>
+				</div>
+				<div class="jg_xz">
+					<div class="jg_head">全部价格</div>
+					<ul class="jg_ul">
+						<li>0-8元</li>
+						<li>9-16元</li>
+						<li>17-24元</li>
+						<li>25元以上</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="typethree">
+			<!--第三部分-->
+			<ul>
+				<!--列表-->
+				<volist name="gashapon" id="gashaponvo" >
+					<li style="background-image: url('{$gashaponvo.gpic}');background-size:100% 100%">
+						<div class="Collection" >
+							<div class="Collection_img" >
+
+							</div>
+							<p class="number">
+								<php>
+									$gid=$gashaponvo['gid'];
+									$collect=M("collect")->where("gid=$gid")->select();
+									echo count($collect);
+								</php>
+							</p>
+						</div>
+						<div class="typethree_bottom">
+							<p>{$gashaponvo.gname}</p>
+						</div>
+					</li>
+				</volist>
+			</ul>
+		</div>
+
+	</div>
+
+</div>
+<div class="kong"></div>
+<div class="foot">
+	<!--底部导航-->
+	<div class="foot_item">
+		<img src="__TMPL__Public/assets/images/000.png" />
+	</div>
+	<div class="foot_item">
+		<img src="__TMPL__Public/assets/images/000.png" />
+	</div>
+	<div class="foot_item">
+		<img src="__TMPL__Public/assets/images/000.png" />
+	</div>
+	<div class="foot_item">
+		<img src="__TMPL__Public/assets/images/000.png" />
+	</div>
+</div>
+
+</body>
+<script src="__TMPL__Public/assets/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/assets/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/assets/js/lunbo.js" type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/assets/js/Toylist.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function() {
+        //让分类和价格置顶
+        movetop(".typetwo");
+        $(".fl").click(function() {
+//				点击全部分类出来分类列表
+            //				$(".fixed").toggleClass("show");
+            $(".fl_xz").toggleClass("show");
+            $(".jg_xz").removeClass("show");
+//				document.ontouchstart=function(){
+//				return false;
+//			}
+        })
+        $(".price").click(function() {
+            //点击全部价格出来价格列表
+            //				$(".fixed").toggleClass("show");
+            $(".jg_xz").toggleClass("show");
+            $(".fl_xz").removeClass("show");
+//				document.ontouchstart=function(){
+//				return false;
+//			}
+        })
+        $(".zt").click(function(){
+            //点击专题出来专题列表出来
+            $(".fixed").slideDown();
+        })
+        $(".exit").click(function(){
+            //点击取消专题列表消失
+            $(".fixed").slideUp();
+        })
+
+        $(".Collection_img").click(function() {
+            //点击收藏的时候一系列动作
+            $(this).toggleClass("Collection_img_active");
+            //检测是否有被选中时候的状态
+            var n = $(this).next().html();
+            //提取出数字框里面的数字
+            if($(this).hasClass("Collection_img_active")) {
+                //如果有被选中的状态，后面的数加一
+                $(this).next().html(parseInt(n) + 1);
+            } else {
+                //反之没有就减一
+                $(this).next().html(parseInt(n) - 1);
+            }
+
+        });
+        var num=$(".fixed_ul li").length;
+        if(num%3==1){
+            $(".fixed_ul").append("<li></li><li></li>");
+        }
+        if(num%3==2){
+            $(".fixed_ul").append("<li></li>");
+        }
+        var nun=$(".fl_ul li").length;
+        if(nun%3==1){
+            $(".fl_ul").append("<li></li><li></li>");
+        }
+        if(nun%3==2){
+            $(".fl_ul").append("<li></li>");
+        }
+
+    })
+    //		document.ontouchstart=function(){
+    //		return false;
+    //	}
+</script>
+
+</html>

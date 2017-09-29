@@ -1,0 +1,33 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>编辑热门搜索</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('AdminHotsearch/edit_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">关键词</label>
+					<div class="controls">
+						<input type="text" name="hotword" value="{$hotword}">
+						<span class="form-required">*</span>
+						<input type="hidden" name="hs_id" value="{$hs_id}">
+					</div>
+					<br />
+					<label class="control-label">被搜索次数</label>
+					<div class="controls">
+						<input type="text" name="hsnum" value="{$hsnum}">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+
+			</fieldset>
+			<div class="form-actions">
+				<button class="btn btn-primary js-ajax-submit" type="submit">{:L('SAVE')}</button>
+				<a class="btn" href="javascript:history.back(-1);">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

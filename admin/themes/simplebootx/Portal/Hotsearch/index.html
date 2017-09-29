@@ -1,0 +1,39 @@
+<admintpl file="header" />
+</head>
+<body>
+<div class="wrap">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="{:U('AdminHotsearch/index')}">热门搜索</a></li>
+        <!--<li><a href="{:U('AdminHotsearch/add')}">添加分类</a></li>-->
+    </ul>
+    <form method="post" class="js-ajax-form" action="{:U('term/listorders')}">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th width="50">ID</th>
+                <th>关键词</th>
+                <th>被搜索数量</th>
+                <th>更新时间</th>
+                <th width="120">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name="hotsearch" item="vo">
+                <tr>
+                    <td>{$vo.hs_id}</td>
+                    <td>{$vo.hotword}</td>
+                    <td>{$vo.hsnum}</td>
+                    <td>{$vo.hstime}</td>
+                    <td>
+                        <a href="{:U('AdminHotsearch/edit',array('id'=>$vo['cate_id']))}">编辑</a>|
+                        <a href="{:U('AdminHotsearch/delete',array('id'=>$vo['cate_id']))}" class="js-ajax-delete">删除</a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

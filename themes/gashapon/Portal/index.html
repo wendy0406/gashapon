@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/init.css" />
+		<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="__TMPL__Public/assets/css/swiper-3.4.2.min.css"/>
+		<script src="__TMPL__Public/assets/js/fontsize.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="head">
+			<!--头部-->
+			<div class="head_item zt">
+				<!--专题导航-->
+				<img src="__TMPL__Public/assets/images/index_zt@2x.png" />
+			</div>
+			<div class="head_item fl">
+				<!--分类导航-->
+				<img src="__TMPL__Public/assets/images/index_fl@2x.png" />
+			</div>
+			<div class="head_item xx">
+				<!--消息导航-->
+				<img src="__TMPL__Public/assets/images/index_xx@2x.png" />
+			</div>
+			<div class="seach">
+				<!--搜索导航-->
+				<div class="seach_img">
+					<!--搜索图标-->
+					<img src="__TMPL__Public/assets/images/icon003.png" />
+				</div>
+				<input type="" name="" id="" value="" />
+				<!--搜索框-->
+			</div>
+			<div class="Sign">
+				<!--签到-->
+				<img src="__TMPL__Public/assets/images/icon004.png" />
+			</div>
+		</div>
+		<div class="body">
+			<!--身体部分-->
+			<div class="typeone">
+				<!--第一部分-->
+				<div class="Notice">
+					<!--公告-->
+					<div class="horn">
+						<!--小喇叭-->
+						<img src="__TMPL__Public/assets/images/icon005.png"/>
+					</div>
+					<div class="Notice_res">
+						<!--公告内容-->
+						<div class="lunbo">
+							<p>公告：<span>内容内容内容内容内容内容。</span></p>
+						</div>
+
+					</div>
+				</div>
+                <php>
+				$home_slides=sp_getslide("imgs_index");
+				</php>
+				<div class="index_img" style="background-image:url() ;background-size: 100% 100%;">
+					<!--第一部分主题-->
+                   	<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<foreach name="home_slides" item="vo">
+							<div class="swiper-slide"><a href="{$vo.slide_url}"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}"/></a></div>
+							</foreach>
+						</div>
+						<!-- 如果需要分页器 -->
+						<div class="swiper-pagination"></div>
+
+						<!-- 如果需要导航按钮 -->
+						<!--<div class="swiper-button-prev"></div>-->
+						<!--<div class="swiper-button-next"></div>-->
+
+						<!-- 如果需要滚动条 -->
+						<!--<div class="swiper-scrollbar" style="display: none;"></div>-->
+					</div>
+				</div>
+			</div>
+			<div class="line">
+           <!--分割线-->
+			</div>
+			<div class="typetwo">
+				<!--第二部分-->
+				<div class="typetwo_left">
+					<!--第二部分左边-->
+					<div class="typetwo_left_top" style="background-image:url(__TMPL__Public/assets/images/pic001.png) ;background-size: 100% 100%;">
+						<!--第二部分左上-->
+                       <div class="rmph">
+                       	  <!--飘浮标题-->
+                       	 <img src="__TMPL__Public/assets/images/icon006.png"/>
+                       </div>
+					</div>
+					<div class="typetwo_left_down" style="background-image:url(__TMPL__Public/assets/images/pic003.png) ;background-size: 100% 100%;">
+						<!--第二部分左下-->
+                       <div class="rmph">
+                       	 <!--飘浮标题-->
+                       	 <img src="__TMPL__Public/assets/images/icon008.png"/>
+                       </div>
+					</div>
+				</div>
+				<div class="typetwo_right">
+					<!--第二部分右边-->
+					<div class="typetwo_right_top" style="background-image:url(__TMPL__Public/assets/images/pic002.png) ;background-size: 100% 100%;">
+					   <!--第二部分右上-->
+                        <div class="xsqg">
+                        	 <!--飘浮标题-->
+                       	 <img src="__TMPL__Public/assets/images/icon007.png"/>
+                       </div>
+                       <div class="djs">
+                       	<!--倒计时-->
+                       	  距开始还有00:00:10
+                       </div>
+					</div>
+					<div class="typetwo_right_down" >
+						<!--第二部分右下-->
+						<div style="background-image:url(__TMPL__Public/assets/images/pic004.png) ;background-size: 100% 100%;">
+							<div class="yd" >
+								 <!--飘浮标题-->
+								<img src="__TMPL__Public/assets/images/icon009.png"/>
+							</div>
+						</div>
+						<div style="background-image:url(__TMPL__Public/assets/images/pic004.png) ;background-size: 100% 100%;">
+							<div class="yd">
+								 <!--飘浮标题-->
+								<img src="__TMPL__Public/assets/images/icon010.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="module" style="background-image:url(__TMPL__Public/assets/images/pic005.png) ;background-size: 100% 100%;">
+				<!--推荐模块-->
+				<div class="tj">
+					<!--推荐-->
+					<img src="__TMPL__Public/assets/images/index_tj@2x.png"/>
+				</div>
+				<div class="module_bottom">
+					<!--底部标题-->
+					<img src="__TMPL__Public/assets/images/index_rmzt@2x.png" />
+				</div>
+			</div>
+			<div class="kindone typethree">
+				<!--展示样式一-->
+				<div class="item">
+					
+				
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<!--展现列表具体项-->
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    <!--展现列表具体标题-->	
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom" style="background-image:url() ;background-size: 100% 100%;">
+                    	超可爱
+                    </div>
+				</div>
+				<!--<div class="kindone_item">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>-->
+			</div>
+			</div>
+			<div class="module" style="background-image:url() ;background-size: 100% 100%;">
+				<div class="tj">
+					<img src="__TMPL__Public/assets/images/index_tj@2x.png"/>
+				</div>
+				<div class="module_bottom">
+					<img src="__TMPL__Public/assets/images/index_ysdm@2x.png" />
+				</div>
+			</div>
+			<div class="kindtwo typefour">
+				<!--展示样式一-->
+				<div class="item">
+					
+				
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<!--展现列表具体项-->
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	 <!--展现列表具体标题-->	
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				</div>
+			</div>
+			<div class="module" style="background-image:url() ;background-size: 100% 100%;">
+				<div class="tj">
+					<img src="__TMPL__Public/assets/images/index_tj@2x.png"/>
+				</div>
+				<div class="module_bottom">
+					<img src="__TMPL__Public/assets/images/index_dwly@2x.png" />
+				</div>
+			</div>
+			<div class="kindone typefive">
+				<div class="item">
+					
+				
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				</div>
+			  </div>
+			</div>
+			<div class="module" style="background-image:url() ;background-size: 100% 100%;">
+				<div class="tj">
+					<img src="__TMPL__Public/assets/images/index_tj@2x.png"/>
+				</div>
+				<div class="module_bottom">
+					<img src="__TMPL__Public/assets/images/index_cycw@2x.png" />
+				</div>
+			</div>
+			<div class="kindtwo typefive">
+				<div class="item">
+					
+				
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+				<div class="kindone_item" style="background-image:url() ;background-size: 100% 100%;">
+					<div class="kind_img">
+						
+					</div>
+                    <div class="kind_buttom">
+                    	超可爱
+                    </div>
+				</div>
+			</div>
+		     </div>
+		</div>
+		</div>
+		<div class="kong">
+
+		</div>
+		<div class="foot">
+			<!--底部导航-->
+			<div class="foot_item">
+				<img src="__TMPL__Public/assets/images/000.png" />
+			</div>
+			<div class="foot_item">
+				<img src="__TMPL__Public/assets/images/000.png" />
+			</div>
+			<div class="foot_item">
+				<img src="__TMPL__Public/assets/images/000.png" />
+			</div>
+			<div class="foot_item">
+				<img src="__TMPL__Public/assets/images/000.png" />
+			</div>
+		</div>
+	</body>
+	<script src="__TMPL__Public/assets/js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	
+    <script src="__TMPL__Public/assets/js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__TMPL__Public/assets/js/index.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__TMPL__Public/assets/js/lunbo.js" type="text/javascript" charset="utf-8"></script>
+</html>

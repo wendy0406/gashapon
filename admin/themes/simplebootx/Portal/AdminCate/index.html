@@ -1,0 +1,35 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('AdminCate/index')}">扭蛋机分类</a></li>
+			<li><a href="{:U('AdminCate/add')}">添加分类</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="{:U('term/listorders')}">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th>分类名称</th>
+						<th width="120">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="cate" item="vo">
+					<tr>
+						<td>{$vo.cate_id}</td>
+						<td>{$vo.catename}</td>
+						<td>
+							<a href="{:U('AdminCate/edit',array('id'=>$vo['cate_id']))}">编辑</a>|
+							<a href="{:U('AdminCate/delete',array('id'=>$vo['cate_id']))}" class="js-ajax-delete">删除</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>
